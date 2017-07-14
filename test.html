@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>Etch Standalone Test</title>
+</head>
+<body>
+  <script src="dist/etch-standalone.min.js"></script>
+  <script>
+    function ListItemView(props, children) {
+      this.props = props;
+      etch.initialize(this);
+    }
+
+    ListItemView.prototype.update = function (props, children) {
+      this.props = props;
+      return etch.update(this);
+    };
+
+    ListItemView.prototype.render = function (props, children) {
+      return etch.dom('li', null, this.props.text);
+    };
+
+    function ListView(props, children) {
+      this.props = props;
+      etch.initialize(this);
+    }
+
+    ListView.prototype.update = function (props, children) {
+      this.props = props;
+      return etch.update(this);
+    };
+
+    ListView.prototype.render = function (props, children) {
+      return etch.dom('div', null,
+        etch.dom('h1', null, 'The Plan'),
+        etch.dom('ol', null, this.props.items.map(function (item) {
+          return etch.dom(ListItemView, {text: item});
+        }))
+      )
+    };
+
+    var nextSteps = new ListView({items: [
+      'Package Etch',
+      'Distribute to masses',
+      '???',
+      'PROFIT!!!'
+    ]});
+
+    document.body.appendChild(nextSteps.element);
+  </script>
+</body>
+</html>

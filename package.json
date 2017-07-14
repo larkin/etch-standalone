@@ -1,0 +1,30 @@
+{
+  "name": "etch-standalone",
+  "version": "0.12.5",
+  "description": "A standalone build of etch for use in browsers and other environments.",
+  "main": "dist/etch-standalone.js",
+  "scripts": {
+    "browserify": "browserify node_modules/etch/dist/index.js -o dist/etch-standalone.js -s etch",
+    "uglify": "uglifyjs dist/etch-standalone.js -o dist/etch-standalone.min.js",
+    "prepublish": "rm -r dist; mkdir dist; npm run browserify && npm run uglify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larkin/etch-standalone.git"
+  },
+  "keywords": [
+    "atom",
+    "etch"
+  ],
+  "author": "Pete Richards <pete@pete-richards.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/larkin/etch-standalone/issues"
+  },
+  "homepage": "https://github.com/larkin/etch-standalone#readme",
+  "devDependencies": {
+    "browserify": "14.4.0",
+    "etch": "0.12.5",
+    "uglify-js": "3.0.24"
+  }
+}
